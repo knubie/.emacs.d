@@ -83,6 +83,7 @@
 (depends-on "smartparens")
 (depends-on "swiper")
 (depends-on "wgrep")
+(depends-on "which-key")
 
 ;; Documentation --- core/core-docs.el
 (depends-on "dash-at-point")

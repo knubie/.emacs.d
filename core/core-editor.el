@@ -300,6 +300,10 @@
   (advice-add 'wgrep-abort-changes :after 'doom/popup-close)
   (advice-add 'wgrep-finish-edit :after 'doom/popup-close))
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
 
 ;;
 ;; Keybinding fixes

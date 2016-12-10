@@ -127,6 +127,9 @@
         :nv "\\"  (@find-file-in (f-expand ".dotfiles" "~") t)
         ;; Alternative to C-h (used as window shortcut)
         :n  "h"   'help-command
+        (:prefix "w" ; <window>
+          :nv "v" 'split-window-horizontally
+          :nv "s" 'split-window-vertically)
         (:prefix "d" ; <diff>
           :n "." 'doom/vcs-show-hunk
           :n "/" 'vc-diff

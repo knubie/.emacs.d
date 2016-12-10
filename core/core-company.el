@@ -4,7 +4,7 @@
   :commands (company-mode global-company-mode company-complete
              company-complete-common company-manual-begin company-grab-line)
   :init
-  (setq company-idle-delay nil
+  (setq company-idle-delay 0
         company-minimum-prefix-length 2
         company-tooltip-limit 10
         company-dabbrev-downcase nil
@@ -13,7 +13,7 @@
         company-tooltip-align-annotations t
         company-require-match 'never
         company-global-modes '(not eshell-mode comint-mode erc-mode message-mode help-mode)
-        company-frontends '(company-pseudo-tooltip-frontend company-echo-metadata-frontend)
+        company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-echo-metadata-frontend company-preview-frontend)
         company-backends '(company-capf company-yasnippet)
         company-quickhelp-delay nil
         company-statistics-file (concat doom-temp-dir "/company-stats-cache.el"))

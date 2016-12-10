@@ -17,6 +17,9 @@
         company-backends '(company-capf company-yasnippet)
         company-quickhelp-delay nil
         company-statistics-file (concat doom-temp-dir "/company-stats-cache.el"))
+	(defadvice company-pseudo-tooltip-unless-just-one-frontend (around only-show-tooltip-when-invoked activate)
+		(when (company-explicit-action-p)
+		ad-do-it))
 
   :config
   (require 'company-capf)

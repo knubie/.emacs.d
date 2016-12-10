@@ -202,6 +202,8 @@
       :n  "gf" 'find-file-at-point
       ;; Navigation
       :nv "K"  'smart-up
+      :nv "L"   "$"
+      :nv "H"   "^"
       :m  "gD" 'doom/find-def
       :n  "gp" 'doom/reselect-paste
       :n  "gc" 'evil-commentary

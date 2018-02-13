@@ -25,6 +25,11 @@
           :n "A" 'doom/eshell-evil-append
           :n "r" 'doom/eshell-evil-replace-maybe
           :n "R" 'doom/eshell-evil-replace-state-maybe
+          :ni "M-w" 'evil-window-delete
+          :ni "C-j"  'evil-window-down
+          :ni "C-k"  'evil-window-up
+          :ni "C-h"  'evil-window-left
+          :ni "C-l"  'evil-window-right
           :i "C-u" 'eshell-kill-input
           :i "SPC" 'self-insert-command
           :m "<return>" 'doom/eshell-evil-append
@@ -39,6 +44,8 @@
     (when (eq major-mode 'eshell-mode)
       (setq doom-eshell-buffers (delete (current-buffer) doom-eshell-buffers))
       (delete-window)))
+
+  (add-hook 'eshell-after-prompt-hook 'doom/eshell-protect-prompt)
 
   ;; Close window on exit
   (add-hook 'eshell-exit-hook 'doom|eshell-cleanup)

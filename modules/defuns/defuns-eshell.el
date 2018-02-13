@@ -58,7 +58,8 @@
 (defun doom/eshell-prompt ()
   (concat (propertize (abbreviate-file-name (eshell/pwd)) 'face 'eshell-prompt)
           (propertize (doom--eshell-current-git-branch) 'face 'font-lock-function-name-face)
-          (propertize " λ " 'face 'font-lock-constant-face)))
+          (propertize " λ" 'face 'font-lock-constant-face)
+          (propertize " ")))
 
 ;;;###autoload
 (defun doom/eshell-evil-append ()
@@ -99,6 +100,18 @@
   (if (doom--eshell-outside-prompt-p)
       (user-error "Cannot edit read-only region")
     (call-interactively 'evil-replace-state)))
+
+;;;###autoload
+(defun doom/eshell-protect-prompt ()
+  (let ((inhibit-field-text-motion t))
+    (add-text-properties
+     (point-at-bol)
+     (point)
+     '(rear-nonsticky t
+       inhibit-line-move-field-capture t
+       field output
+       read-only t
+       front-sticky (field inhibit-line-move-field-capture)))))
 
 (provide 'defuns-eshell)
 ;;; defuns-eshell.el ends here

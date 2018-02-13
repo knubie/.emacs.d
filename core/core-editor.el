@@ -184,6 +184,17 @@
 
 (use-package goto-last-change :commands goto-last-change)
 
+(use-package origami
+  :config
+  (map! :map origami-mode-map
+        :n "zo" 'origami-open-node
+        :n "zO" 'origami-open-node-recursively
+        :n "zc" 'origami-close-node
+        :n "zC" 'origami-close-node-recursively
+        :n "zM" 'origami-close-all-nodes
+        :n "zR" 'origami-open-all-nodes
+        :n "zz" 'origami-show-only-node))
+
 (use-package hideshow
   :commands (hs-minor-mode hs-toggle-hiding hs-already-hidden-p)
   :config (setq hs-isearch-open t)

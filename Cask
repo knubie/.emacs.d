@@ -78,6 +78,7 @@
 (depends-on "fancy-narrow")
 (depends-on "goto-last-change")
 (depends-on "imenu-list")
+(depends-on "origami")
 (depends-on "pcre2el")
 (depends-on "rotate-text" :git "https://github.com/debug-ito/rotate-text.el")
 (depends-on "smart-forward")

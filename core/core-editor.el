@@ -13,7 +13,7 @@
  indent-tabs-mode nil
  require-final-newline t
  tab-always-indent t
- tab-width 4
+ tab-width 2
  ;; Wrapping
  truncate-lines t
  truncate-partial-width-windows 50

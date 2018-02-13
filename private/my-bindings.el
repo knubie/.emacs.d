@@ -181,8 +181,8 @@
       ;; Folding
       :n  "zr" 'doom/evil-open-folds
       :n  "zm" 'doom/evil-close-folds
-      :n  "zx" 'doom/kill-real-buffer
       ;; Buffers
+      :n  "zx" 'doom/kill-real-buffer
       :n  "ZX" 'bury-buffer
       :n  "]b" 'doom/next-real-buffer
       :n  "[b" 'doom/previous-real-buffer
@@ -277,7 +277,7 @@
       :m  "%"   'evilmi-jump-items
 
       ;; hide-show/evil-matchit
-      :m  "<tab>" 'doom/evil-matchit
+      ;; :m  "<tab>" 'doom/evil-matchit
       ;; rotate-text
       :n  "!"     'rotate-text
 

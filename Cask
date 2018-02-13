@@ -38,6 +38,7 @@
 (depends-on "highlight-indentation" :git "https://github.com/localredhead/Highlight-Indentation-for-Emacs")
 (depends-on "highlight-numbers")
 (depends-on "nlinum")
+(depends-on "nlinum-relative")
 (depends-on "powerline")
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")

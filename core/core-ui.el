@@ -187,6 +187,14 @@
   (add-hook 'before-make-frame-hook 'doom|nlinum-disable)
   (add-hook 'after-make-frame-functions 'doom|nlinum-enable))
 
+(use-package nlinum-relative
+  :commands (nlinum-relative-toggle nlinum-relative-on)
+  :config
+  (nlinum-relative-setup-evil)
+  (setq nlinum-relative-redisplay-delay 0)
+  :init
+  (add-hook! nlinum-mode 'nlinum-relative-on))
+
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
   :config (setq rainbow-delimiters-max-face-count 3)

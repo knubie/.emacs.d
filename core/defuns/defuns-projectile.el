@@ -26,6 +26,10 @@
     (projectile-project-p)))
 
 ;;;###autoload
+;(defun doom/switch-project ()
+;)
+
+;;;###autoload
 (defalias 'doom/project-name 'projectile-project-name)
 
 (provide 'defuns-projectile)

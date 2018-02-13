@@ -6,6 +6,13 @@
   :interpreter "ruby"
   :init (add-hook 'ruby-mode-hook 'flycheck-mode)
   :config
+  (setq outline-regexp " *def .*\\| *describe '.*' do\\| *feature '.*' do\\| *scenario '.*' do\\| *context '.*' do\\| *scope :.*, -> do")
+  (add-to-list 'hs-special-modes-alist
+                 `(ruby-mode
+                   ,(rx (or "def" "class" "module" "{" "[")) ; Block start
+                   ,(rx (or "}" "]" "end"))                  ; Block end
+                   ,(rx (or "#" "=begin"))                   ; Comment start
+                   ruby-forward-sexp nil))
   (def-builder! ruby-mode "rake %s" "Rakefile")
   (def-company-backend! ruby-mode (dabbrev-code))
   (def-electric! ruby-mode :words ("else" "end" "elseif"))
@@ -13,7 +20,10 @@
   (def-version-cmd! ruby-mode "ruby --version | cut -d' ' -f2")
   (setq ruby-deep-indent-paren t)
   ;; Don't interfere with my custom RET behavior
-  (define-key ruby-mode-map [?\n] nil))
+  (define-key ruby-mode-map [?\n] nil)
+  (map! :map ruby-mode-map
+        (:localleader
+         :n "{" 'ruby-toggle-block)))
 
 (use-package ruby-refactor
   :after ruby-mode
@@ -43,20 +53,21 @@
   :init (add-hook 'ruby-mode-hook 'yard-mode))
 
 (use-package rspec-mode
-  :mode ("/\\.rspec$" . text-mode)
-  :init
-  (associate! rspec-mode :match "/\\.rspec$")
-  (associate! rspec-mode :in (ruby-mode yaml-mode) :files ("spec/"))
-  (defvar rspec-mode-verifiable-map (make-sparse-keymap))
-  (defvar evilmi-ruby-match-tags
-    '((("unless" "if") ("elsif" "else") "end")
-      ("begin" ("rescue" "ensure") "end")
-      ("case" ("when" "else") "end")
-      (("class" "def" "while" "do" "module" "for" "until") () "end")
-      ;; Rake
-      (("task" "namespace") () "end")))
+  ;:mode ("/\\.rspec$" . text-mode)
+  ;:init
+  ;(associate! rspec-mode :match "/\\.rspec$")
+  ;(associate! rspec-mode :in (ruby-mode yaml-mode) :files ("spec/"))
+  ;(defvar rspec-mode-verifiable-map (make-sparse-keymap))
+  ;(defvar evilmi-ruby-match-tags
+    ;'((("unless" "if") ("elsif" "else") "end")
+      ;("begin" ("rescue" "ensure") "end")
+      ;("case" ("when" "else") "end")
+      ;(("class" "def" "while" "do" "module" "for" "until") () "end")
+      ;;; Rake
+      ;(("task" "namespace") () "end")))
   :config
-  (map! :map rspec-mode-map
+  (def-popup! " ?\\*rspec-compilation\\*" :align below :size 14 :noselect t :regexp t)
+  (map! :map ruby-mode-map
         (:localleader
          :n "tr" 'rspec-rerun
          :n "ta" 'rspec-verify-all

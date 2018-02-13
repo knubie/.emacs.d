@@ -305,11 +305,6 @@
                          (call-interactively 'company-dabbrev-code)
                          (company-select-previous-or-abort))))
 
-      (:after ivy
-        (:map ivy-mode-map
-          "C-j"        'ivy-next-line
-          "C-k"        'ivy-previous-line))
-
       (:after company
         (:map company-active-map
           "C-o"        'company-search-kill-others
